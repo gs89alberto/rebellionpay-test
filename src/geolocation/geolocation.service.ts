@@ -30,6 +30,8 @@ export class GeolocationService {
     )
       throw new Error('Missing option("geolocations" or "users")');
 
+    await this.geolocationModel.deleteMany({});
+    await this.userModel.deleteMany({});
     if (options['geolocations'] === '1')
       await this.geolocationModel.create(geolocations);
     if (options['users'] === '1') await this.userModel.create(users);
